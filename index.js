@@ -34,5 +34,6 @@ app.get('/profile', isLoggedIn, function(req, res){
 });
 
 app.use('/auth', require('./controllers/auth'));
+app.use('/recipes', require('./controllers/recipes'));
 
 app.listen(process.env.PORT || 3000);

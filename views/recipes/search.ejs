@@ -1,0 +1,7 @@
+<h1>search recipes</h1>
+<% recipe.recipes.forEach(function(recipe){%>
+	<h3><%=recipe.title%></h3>
+	<img src="<%=recipe.image_url%>">
+	<h4><%=recipe.recipe_id%></h4>
+	<a href="recipes/<%=recipe.recipe_id%>">More</a>
+<%})%>

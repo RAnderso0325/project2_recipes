@@ -1,6 +1,7 @@
 var express = require('express');
 var passport = require('../config/passportConfig');
 var db = require('../models');
+var rowdy = require('rowdy-logger');
 var router = express.Router();
 
 router.get('/login', function(req, res){

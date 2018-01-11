@@ -1,0 +1,11 @@
+<h3>Don't see what you're looking for?</h3>
+<a href="/recipes" class="btn btn-info">Do Another Search</a>
+<h1>Search Results</h1>
+<% recipe.recipes.forEach(function(recipe){%>
+	<h3><%=recipe.title%></h3>
+	<img src="<%=recipe.image_url%>"></a>
+	<form method="POST" action="/recipes/individual">
+		<input hidden type="text" name="rId" value="<%=recipe.recipe_id%>">
+		<input type="submit" value="More Information" class="btn btn-success">
+	</form>
+<%})%>

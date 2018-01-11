@@ -1,7 +1,8 @@
 <h1>search recipes</h1>
-<% recipe.recipes.forEach(function(recipe){%>
-	<h3><%=recipe.title%></h3>
-	<img src="<%=recipe.image_url%>">
-	<h4><%=recipe.recipe_id%></h4>
-	<a href="recipes/<%=recipe.recipe_id%>">More</a>
-<%})%>
+<form method="POST" action="/recipes">
+	<div class="form-group">
+		<label>Search: </label>
+		<input type="text" name="search" placeholder="Enter a word or phrase to describe your search here">
+	</div>
+	<input type="submit" value="Search" class="btn btn-success">
+</form>

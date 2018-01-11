@@ -92,17 +92,3 @@ passport.use(new facebookStrategy({
 }));
 
 module.exports = passport;
-
-
-
-
-
-
-
-
-
-
-
-
-
-

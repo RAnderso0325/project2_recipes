@@ -1,7 +1,7 @@
 'use strict';
 var bcrypt = require('bcrypt');
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   var user = sequelize.define('user', {
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
@@ -21,16 +21,18 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       validate: {
         len: {
-          args: [6, 32],
-          msg: 'Password must be between 6 and 32 characters long'
+          args: [6,32],
+          msg: 'Password must be between 6 and 32 characters in length!'
         }
       }
     },
     facebookId: DataTypes.STRING,
-    facebookToken: DataTypes.STRING
+    facebookToken: DataTypes.STRING,
+    futureId: DataTypes.INTEGER,
+    currentId: DataTypes.INTEGER
   }, {
     hooks: {
-      beforeCreate: function(pendingUser, options){
+      beforeCreate: function(pendingUser,options){
         if(pendingUser && pendingUser.password){
           var hash = bcrypt.hashSync(pendingUser.password, 10);
           pendingUser.password = hash;
@@ -39,38 +41,18 @@ module.exports = function(sequelize, DataTypes) {
     },
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        models.user.hasMany(models.future);
+        models.user.hasMany(models.current);
       }
     }
   });
-
   user.prototype.isValidPassword = function(passwordTyped){
     return bcrypt.compareSync(passwordTyped, this.password);
   }
-
   user.prototype.toJSON = function(){
     var user = this.get();
     delete user.password;
     return user;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   return user;
 };

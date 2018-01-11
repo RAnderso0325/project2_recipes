@@ -1,0 +1,1 @@
+<div id="edamam-badge" data-color="white"></div>

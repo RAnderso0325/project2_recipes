@@ -4,3 +4,12 @@
 <h4><%=recipe.recipe.ingredients%></h4>
 <h3>For directions and nutrient information, visit: </h3>
 <a href="<%=recipe.recipe.source_url%>"><%=recipe.recipe.publisher%></a>
+<form method="POST" action="/recipes/favorites">
+	<input hidden type="text" name="rId" value="<%=recipe.recipe.recipe_id%>">
+	<input hidden type="text" name="title" value="<%=recipe.recipe.title%>">
+	<input hidden type="text" name="ingredients" value="<%=recipe.recipe.ingredients%>">
+	<input hidden type="text" name="source_url" value="<%=recipe.recipe.source_url%>">
+	<input hidden type="text" name="img_url" value="<%=recipe.recipe.image_url%>">
+	<input hidden type="text" name="publisher" value="<%=recipe.recipe.publisher%>">
+	<input type="submit" value="Add to Recipes I'm Interested In" class="btn btn-success">
+</form>

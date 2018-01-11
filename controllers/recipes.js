@@ -38,15 +38,45 @@ router.post('/individual', isLoggedIn, function(req,res){
 });
 
 router.get('/favorites', isLoggedIn, function(req,res){
-	res.send('favorites page coming soon!');
+	db.future.findAll({
+		include: [db.user]
+	}).then(function(recipes){
+		res.render('recipes/myRecipes/favorites', {results: recipes});
+	});
 });
 
 router.post('/favorites', isLoggedIn, function(req,res){
-	res.send('post route coming soon!');
+	db.future.findOrCreate({
+		where: {rId: req.body.rId},
+		include: [db.user],
+		defaults: {
+			rId: req.body.rId,
+			title: req.body.title,
+			ingredients: req.body.ingredients,
+			source_url: req.body.source_url,
+			img_url: req.body.img_url,
+			publisher: req.body.publisher
+		}
+	}).spread(function(future, wasCreated){
+		if(wasCreated){
+			res.redirect('/recipes/favorites');
+		}else{
+			res.redirect('/recipes/favorites');
+		}
+	}).catch(function(err){
+		res.send(err);
+	});
 });
 
 router.get('/favorites/:id', isLoggedIn, function(req,res){
-	res.send('individual recipes coming soon!');
+	db.future.findOne({
+		where: {id: req.params.id},
+		include: [db.user]
+	}).then(function(recipe){
+		res.render('recipes/myRecipes/single', {recipe: recipe});
+	}).catch(function(err){
+		console.log(err);
+	});
 });
 
 router.delete('/favorites/:id', isLoggedIn, function(req,res){

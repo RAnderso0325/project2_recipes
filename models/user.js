@@ -38,14 +38,12 @@ module.exports = (sequelize, DataTypes) => {
           pendingUser.password = hash;
         }
       }
-    },
-    classMethods: {
-      associate: function(models) {
-        models.user.hasMany(models.future);
-        models.user.hasMany(models.current);
-      }
     }
   });
+  user.associate = function(models){
+    models.user.hasMany(models.future);
+    models.user.hasMany(models.current);
+  }
   user.prototype.isValidPassword = function(passwordTyped){
     return bcrypt.compareSync(passwordTyped, this.password);
   }

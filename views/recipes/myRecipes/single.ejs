@@ -4,3 +4,4 @@
 <h4><%=recipe.ingredients%></h4>
 <h3>For directions and nutrient information, visit: </h3>
 <a href="<%=recipe.source_url%>"><%=recipe.publisher%></a>
+<a href="/recipes/favorites/<%=recipe.id%>" class="btn btn-danger" id="delete-recipe-favorites">Delete from recipes I'd like to try</a>

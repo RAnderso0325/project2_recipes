@@ -15,6 +15,7 @@ app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
+app.use(express.static(__dirname + '/public/'));
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -39,6 +40,7 @@ app.get('/profile', isLoggedIn, function(req, res){
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/recipes', require('./controllers/recipes'));
+app.use('/recipes/favorites', require('./controllers/favorites'));
 
 var server = app.listen(process.env.PORT || 3000, function() {
   rowdy.print();

@@ -66,6 +66,32 @@ router.delete('/:id', isLoggedIn, function(req,res){
 	});
 });
 
+router.get('/edit/:id', isLoggedIn, function(req,res){
+	db.future.findOne({
+		where: {id: req.params.id},
+		include: [db.user]
+	}).then(function(recipe){
+		res.render('recipes/myRecipes/edit', {recipe: recipe})
+	}).catch(function(err){
+		console.log(err);
+	});
+});
+
+router.put('/edit/:id', isLoggedIn, function(req,res){
+	db.future.findOne({
+		where: {id: req.body.id}
+	}).then(function(recipe){
+		recipe.title = req.body.title;
+		recipe.ingredients = req.body.ingredients;
+		recipe.img_url = req.body.img_url;
+		recipe.save();
+	}).then(function(updatedRecipe){
+			res.send('Recipe is updated');
+	}).catch(function(err){
+		res.send(err);
+	});
+});
+
 router.get('/made', isLoggedIn, function(req,res){
 	res.send('recipes I have made coming soon');
 });

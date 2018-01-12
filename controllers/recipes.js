@@ -3,7 +3,6 @@ var express = require('express');
 var request = require('request');
 var ejsLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
-var cheerio = require('cheerio');
 var isLoggedIn = require('../middleware/isLoggedIn');
 var db = require('../models');
 var rowdy = require('rowdy-logger');

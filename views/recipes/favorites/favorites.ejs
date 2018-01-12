@@ -1,8 +1,16 @@
 <h2>Recipes I'd Like to Try:</h2>
-
+<div class="row">
 <% results.forEach(function(recipe){%>
-	<h3><%=recipe.title%></h3>
-	<img src="<%=recipe.img_url%>"></a>
-	<a href="/recipes/favorites/<%=recipe.id%>" class="btn btn-success">More Information</a>
-	<a href="/recipes/favorites/<%=recipe.id%>" class="btn btn-danger delete-recipe-favorites">Delete from recipes I'd like to try</a>
+	<div class="col l3 m4 s12">
+		<div class="row">
+			<h5><%=recipe.title%></h5>
+			<a href="/recipes/favorites/<%=recipe.id%>" class="btn-floating btn-large waves-effect waves-light green accent-2"><i class="material-icons">info_outline</i></a>
+			<a href="/recipes/favorites/add/<%=recipe.id%>" class="btn-floating btn-large pink accent-2"><i class="material-icons">add</i></a>
+			<a href="/recipes/favorites/<%=recipe.id%>" class="btn-floating btn-large waves-effect waves-light red accent-2"><i class="material-icons">delete</i></a>
+		</div>
+		<div class="row">
+			<img class="responsive-img" src="<%=recipe.img_url%>"></a>
+		</div>
+	</div>
 <%})%>
+</div>

@@ -3,11 +3,15 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var ejsLayouts = require('express-ejs-layouts');
 var flash = require('connect-flash');
+var multer = require('multer');
+var cloudinary = require('cloudinary');
 var isLoggedIn = require('./middleware/isLoggedIn');
 var passport = require('./config/passportConfig');
 var session = require('express-session');
 var rowdy = require('rowdy-logger');
 var app = express();
+
+var upload = multer({dest: "./uploads"});
 
 rowdy.begin(app);
 

@@ -4,11 +4,14 @@ var request = require('request');
 var ejsLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
 var async = require('async');
-var cheerio = require('cheerio');
+var multer = require('multer');
+var cloudinary = require('cloudinary');
 var isLoggedIn = require('../middleware/isLoggedIn');
 var db = require('../models');
 var rowdy = require('rowdy-logger');
 var router = express.Router();
+
+var upload = multer({dest: "./uploads"});
 
 router.get('/', isLoggedIn, function(req,res){
 	db.future.findAll({

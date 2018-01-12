@@ -1,11 +1,30 @@
-<h3>Don't see what you're looking for?</h3>
-<a href="/recipes" class="btn btn-info">Do Another Search</a>
-<h1>Search Results</h1>
+<h4>Don't see what you're looking for?</h4>
+<div class="row">
+<a href="/recipes" class="btn waves-effect waves-light">Do Another Search</a>
+</div>
+<div class="row">
+<h3>Search Results</h3>
+</div>
+<div class="row">
 <% recipe.recipes.forEach(function(recipe){%>
-	<h3><%=recipe.title%></h3>
-	<img src="<%=recipe.image_url%>"></a>
-	<form method="POST" action="/recipes/individual">
-		<input hidden type="text" name="rId" value="<%=recipe.recipe_id%>">
-		<input type="submit" value="More Information" class="btn btn-success">
-	</form>
+	<div class="col l3 m4 s12">
+		<div class="row">
+			<% var re = /\&\#8217\;/; %>
+			<% if(recipe.title.search(re)){%>
+				<% var title = recipe.title.replace(re, '\''); %>
+				<h5><%=title%></h5>
+			<%}else{%>
+			<h5><%=recipe.title%></h5>
+			<%}%>
+			<form method="POST" action="/recipes/individual">
+				<input hidden type="text" name="rId" value="<%=recipe.recipe_id%>">
+				<button type="submit" value="More Information" class="btn-floating btn-large waves-effect waves-light indigo accent-2"><i class="large material-icons">info_outline</i></button>
+			</form>
+		</div>
+		<div class="row">
+			<img class="responsive-img" src="<%=recipe.image_url%>">
+		</div>
+	</div>
 <%})%>
+</div>
+<div class="row"></div>

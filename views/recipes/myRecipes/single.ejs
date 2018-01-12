@@ -1,3 +1,13 @@
+<div class="fixed-action-btn horizontal">
+	<a class="btn-floating btn-large deep-purple accent-1">
+		<i class="large material-icons">expand_more</i>
+	</a>
+	<ul>
+		<li><a href="/recipes/myrecipes/edit/<%=recipe.id%>" class="btn-floating indigo accent-2"><i class="material-icons">mode_edit</i></a></li>
+		<li><a class="btn-floating orange accent-2" href="/recipes/myrecipes/add-photo/<%=recipe.id%>"><i class="material-icons">photo</i></a></li>
+		<li><a href="/recipes/myrecipes/<%=recipe.id%>" class="btn-floating red accent-2 delete-my-recipe"><i class="material-icons">delete</i></a></li>
+	</ul>
+</div>
 <% if(!recipe.directions){%>
 <div class="row">
 	<h2><%=recipe.title%></h2>
@@ -8,7 +18,14 @@
 			<h5>Published by: <%=recipe.publisher%></h5>
 		</div>
 		<div class="row">
+			<% if(!recipe.user_img){%>
 			<img class="responsive-img" src="<%=recipe.img_url%>">
+		</div>
+		<div class="row">
+			<a class="waves-effect waves-light btn" href="/recipes/myrecipes/add-photo/<%=recipe.id%>">Upload your own photo</a>
+		<%}else{%>
+			<img class="responsive-img" src="https://res.cloudinary.com/<%=process.env.CLOUDINARY_CLOUD_NAME%>/image/upload/<%=recipe.user_img%>.jpg">
+		<%}%>	
 		</div>
 	</div>
 	<div class="col l1 m1 s0"></div>
@@ -52,7 +69,15 @@
 			<h5>Published by: <%=recipe.publisher%></h5>
 		</div>
 		<div class="row">
+		<% if(!recipe.user_img){%>
 			<img class="responsive-img" src="<%=recipe.img_url%>">
+			<br>
+			<a class="waves-effect waves-light btn" href="/recipes/myrecipes/add-photo/<%=recipe.id%>">Upload your own photo</a>
+		<%}else{%>
+			<img class="responsive-img" src="https://res.cloudinary.com/<%=process.env.CLOUDINARY_CLOUD_NAME%>/image/upload/<%=recipe.user_img%>.jpg">
+			<br>
+			<a class="waves-effect waves-light btn" href="/recipes/myrecipes/add-photo/<%=recipe.id%>">Upload a new photo</a>
+		<%}%>
 		</div>
 	</div>
 	<div class="col l1 m1 s0"></div>
@@ -80,7 +105,6 @@
 				<% directions.forEach(function(direction){%>
 				<li><%=direction%></li>
 				<%})%>
-				<li><%=recipe.directions%></li>
 			</ul>
 		</div>
 	</div>
@@ -92,11 +116,15 @@
 		</div>
 		<div class="row">
 			<ul>
+				<% if (recipe.notes){ %>
 				<% var notes = []; %>
 				<% notes = recipe.notes.split(';');%>
 				<% notes.forEach(function(note){%>
 				<li><%=note%></li>
 				<%});%>
+				<%}else{%>
+				<li>No Notes Yet!</li>
+				<%}%>
 			</ul>
 		</div>
 	</div>
@@ -110,12 +138,3 @@
 	</div>
 </div>
 <%}%>
-<div class="fixed-action-btn horizontal">
-	<a class="btn-floating btn-large deep-purple accent-1">
-		<i class="large material-icons">expand_more</i>
-	</a>
-	<ul>
-		<li><a href="/recipes/myrecipes/edit/<%=recipe.id%>" class="btn-floating indigo accent-2"><i class="material-icons">mode_edit</i></a></li>
-		<li><a href="/recipes/myrecipes/<%=recipe.id%>" class="btn-floating red accent-2 delete-my-recipe"><i class="material-icons">delete</i></a></li>
-	</ul>
-</div>

@@ -11,80 +11,69 @@ var rowdy = require('rowdy-logger');
 var router = express.Router();
 
 router.get('/', isLoggedIn, function(req,res){
-	db.future.findAll({
+	db.current.findAll({
 		include: [db.user]
 	}).then(function(recipes){
-		res.render('recipes/favorites/favorites', {results: recipes});
+		res.render('recipes/myRecipes/all', {results: recipes});
 	});
 });
 
-router.post('/', isLoggedIn, function(req,res){
-	db.future.findOrCreate({
-		where: {rId: req.body.rId},
+router.get('/new', isLoggedIn, function(req,res){
+	res.render('/recipes/myRecipes/new');
+});
+
+router.post('/', isLoggedIn, function(req,res){//new recipe
+	db.current.findOrCreate({
+		where: {id: req.body.id},
 		include: [db.user],
 		defaults: {
 			rId: req.body.rId,
 			title: req.body.title,
 			ingredients: req.body.ingredients,
-			source_url: req.body.source_url,
+			directions: req.body.directions,
 			img_url: req.body.img_url,
 			publisher: req.body.publisher,
-			directions: req.body.directions
+			source_url: req.body.source_url
 		}
-	}).spread(function(future, wasCreated){
+	}).spread(function(current, wasCreated){
 		if(wasCreated){
-			res.redirect('/recipes/favorites');
+			res.redirect('/recipes/myrecipes');
 		}else{
-			res.redirect('/recipes/favorites');
+			res.redirect('/recipes/myrecipes');
 		}
-	}).catch(function(err){
-		res.send(err);
 	});
 });
 
 router.get('/:id', isLoggedIn, function(req,res){
-	db.future.findOne({
+	db.current.findOne({
 		where: {id: req.params.id},
 		include: [db.user]
 	}).then(function(recipe){
-		res.render('recipes/favorites/single', {recipe: recipe});
+		res.render('recipes/myRecipes/single', {recipe: recipe});
 	}).catch(function(err){
 		console.log(err);
 	});
 });
 
-router.delete('/:id', isLoggedIn, function(req,res){
-	db.future.findOne({
-		where: {id: req.params.id}
-	}).then(function(recipe){
-		db.future.destroy({
-			where: {id: req.params.id}
-		}).then(function(deleted){
-			res.send('all good');
-		});
-	}).catch(function(err){
-		res.send('uh oh', err);
-	});
-});
-
 router.get('/edit/:id', isLoggedIn, function(req,res){
-	db.future.findOne({
+	db.current.findOne({
 		where: {id: req.params.id},
 		include: [db.user]
 	}).then(function(recipe){
-		res.render('recipes/favorites/edit', {recipe: recipe});
+		res.render('recipes/myRecipes/edit', {recipe: recipe});
 	}).catch(function(err){
 		console.log(err);
 	});
 });
 
 router.put('/edit/:id', isLoggedIn, function(req,res){
-	db.future.findOne({
+	db.current.findOne({
 		where: {id: req.body.id}
 	}).then(function(recipe){
 		recipe.title = req.body.title;
 		recipe.ingredients = req.body.ingredients;
 		recipe.img_url = req.body.img_url;
+		recipe.directions = req.body.directions;
 		recipe.save();
 	}).then(function(updatedRecipe){
 		res.send('Recipe is updated');
@@ -93,14 +82,17 @@ router.put('/edit/:id', isLoggedIn, function(req,res){
 	});
 });
 
-router.get('/add/:id', isLoggedIn, function(req,res){
-	db.future.findOne({
-		where: {id: req.params.id},
-		include: [db.user]
+router.delete('/:id', isLoggedIn, function(req,res){
+	db.current.findOne({
+		where: {id: req.params.id}
 	}).then(function(recipe){
-		res.render('recipes/favorites/add', {recipe: recipe});
+		db.current.destroy({
+			where: {id: req.params.id}
+		}).then(function(deleted){
+			res.send('all good');
+		});
 	}).catch(function(err){
-		console.log(err);
+		res.send('uh oh', err);
 	});
 });
 

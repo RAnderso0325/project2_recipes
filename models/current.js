@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     source_url: DataTypes.STRING,
     img_url: DataTypes.STRING,
     publisher: DataTypes.STRING,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    directions: DataTypes.TEXT,
+    notes: DataTypes.TEXT
   });
   current.associate = function(models){
     models.current.belongsTo(models.user);

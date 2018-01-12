@@ -45,7 +45,6 @@
 <div class="row">
 	<h2><%=recipe.title%></h2>
 </div>
-</div>
 <div class="row">
 	<div class="col l6 m6 s12">
 		<div class="row">
@@ -74,14 +73,7 @@
 			<h5>Directions:</h5>
 		</div>
 		<div class="row">
-			<ul>
-				<% var directions = [];%>
-				<% directions = recipe.directions.split(';');%>
-				<% directions.forEach(function(direction){%>
-				<li><%=direction%></li>
-				<%})%>
-				<li><%=recipe.directions%></li>
-			</ul>
+			insert recipe directions here
 		</div>
 	</div>
 </div>
@@ -92,30 +84,25 @@
 		</div>
 		<div class="row">
 			<ul>
-				<% var notes = []; %>
-				<% notes = recipe.notes.split(';');%>
-				<% notes.forEach(function(note){%>
-				<li><%=note%></li>
-				<%});%>
+				<li>notes</li>
 			</ul>
 		</div>
 	</div>
 	<div class="col l1 m1 s0"></div>
 	<div class="col l5 m5 s12">
 		<div class="row">
-			<%if(recipe.source_url){%>
 			<h5>For nutrient information: <a href="<%=recipe.source_url%>"><%=recipe.publisher%></a></h5>
-			<%}%>
 		</div>
 	</div>
 </div>
 <%}%>
 <div class="fixed-action-btn horizontal">
 	<a class="btn-floating btn-large deep-purple accent-1">
-		<i class="large material-icons">expand_more</i>
+		<i class="large material-icons">arrow_drop_down</i>
 	</a>
 	<ul>
-		<li><a href="/recipes/myrecipes/edit/<%=recipe.id%>" class="btn-floating indigo accent-2"><i class="material-icons">mode_edit</i></a></li>
-		<li><a href="/recipes/myrecipes/<%=recipe.id%>" class="btn-floating red accent-2 delete-my-recipe"><i class="material-icons">delete</i></a></li>
+		<li><a href="/recipes/favorites/edit/<%=recipe.id%>" class="btn-floating indigo accent-2"><i class="material-icons">mode_edit</i></a></li>
+		<li><a href="/recipes/favorites/add/<%=recipe.id%>" class="btn-floating pink accent-2"><i class="material-icons">add</i></a></li>
+		<li><a href="/recipes/favorites/<%=recipe.id%>" class="btn-floating red accent-2 delete-recipe-favorites"><i class="material-icons">delete</i></a></li>
 	</ul>
 </div>

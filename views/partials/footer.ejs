@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+      <h5 class="white-text">Links</h5>
+      <%if(!currentUser){%>
+      <ul>
+        <li><a class="grey-text text-lighten-3" href="/blog">Blog</a></li>
+        <li><a class="grey-text text-lighten-3" href="/auth/login">Login</a></li>
+        <li><a class="grey-text text-lighten-3" href="/auth/signup">Sign Up</a></li>
+      </ul>
+      <%}else{%>
+      <ul>
+        <li><a class="grey-text text-lighten-3" href="/blog">Blog</a></li>
+        <li><a class="grey-text text-lighten-3" href="/auth/login">My Profile</a></li>
+        <li><a class="grey-text text-lighten-3" href="/recipes">Search</a></li>
+        <li><a class="grey-text text-lighten-3" href="/recipes/favorites">My Recipes</a></li>
+        <li><a class="grey-text text-lighten-3" href="/auth/logout">Logout</a></li>
+      </ul>
+      <%}%>
+  </div>
+</div>
+<div class="footer-copyright">
+  <div class="container">
+    © 2018 Reilly Anderson
+  </div>
+</div>

@@ -45,7 +45,7 @@ app.get('/profile', isLoggedIn, function(req, res){
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/recipes', require('./controllers/recipes'));
-app.use('/recipes/favorites', require('./controllers/favorites'));
+app.use('/recipes/wishlist', require('./controllers/wishlist'));
 app.use('/recipes/myrecipes', require('./controllers/myrecipes'));
 
 var server = app.listen(process.env.PORT || 3000, function() {

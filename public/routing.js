@@ -6,7 +6,7 @@ $(document).ready(function(){
 			url: $(this).attr('href'),
 			method: 'DELETE'
 		}).success(function(data){
-			window.location.href = '/recipes/favorites';
+			window.location.href = '/recipes/wishlist';
 		});
 	});
 	$('.delete-my-recipe').click(function(e){
@@ -30,7 +30,7 @@ $(document).ready(function(){
 				img_url: $('#img-url').val()
 			}
 		}).success(function(data){
-			window.location.href='/recipes/favorites';
+			window.location.href='/recipes/wishlist';
 		});
 	});
 	$('.edit-my-recipe').click(function(e){

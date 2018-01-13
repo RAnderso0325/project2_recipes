@@ -36,8 +36,7 @@ router.post('/', isLoggedIn, function(req,res){//new recipe
 			directions: req.body.directions,
 			img_url: req.body.img_url,
 			publisher: req.body.publisher,
-			source_url: req.body.source_url,
-			user_img: userImg
+			source_url: req.body.source_url
 		}
 	}).spread(function(current, wasCreated){
 		if(wasCreated){

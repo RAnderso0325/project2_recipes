@@ -1,6 +1,6 @@
 <h2><%= recipe.title %> -- Edit</h2>
 
-<form class="edit-form" action="/favorites/edit/<%=recipe.id%>" method="PUT">
+<form class="edit-form" action="recipes/wishlist/edit/<%=recipe.id%>" method="PUT">
 	<label>Recipe Title</label>
 	<input id="new-title" type="text" name="title" value="<%= recipe.title%>">
 	
@@ -12,5 +12,5 @@
 	<label>Image URL</label>
 	<input type="text" name="img_url" id="img-url" value="<%=recipe.img_url%>">
 
-	<input type="submit" value="Edit Recipe" class="btn btn-info edit-recipe">
+	<input type="submit" value="Edit Recipe" class="btn waves-effect waves-light edit-recipe">
 </form>

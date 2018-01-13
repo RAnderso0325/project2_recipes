@@ -17,7 +17,7 @@ router.get('/', isLoggedIn, function(req,res){
 	db.future.findAll({
 		include: [db.user]
 	}).then(function(recipes){
-		res.render('recipes/favorites/favorites', {results: recipes});
+		res.render('recipes/wishlist/all', {results: recipes});
 	});
 });
 
@@ -36,9 +36,9 @@ router.post('/', isLoggedIn, function(req,res){
 		}
 	}).spread(function(future, wasCreated){
 		if(wasCreated){
-			res.redirect('/recipes/favorites');
+			res.redirect('/recipes/wishlist');
 		}else{
-			res.redirect('/recipes/favorites');
+			res.redirect('/recipes/wishlist');
 		}
 	}).catch(function(err){
 		res.send(err);
@@ -50,7 +50,7 @@ router.get('/:id', isLoggedIn, function(req,res){
 		where: {id: req.params.id},
 		include: [db.user]
 	}).then(function(recipe){
-		res.render('recipes/favorites/single', {recipe: recipe});
+		res.render('recipes/wishlist/single', {recipe: recipe});
 	}).catch(function(err){
 		console.log(err);
 	});
@@ -75,7 +75,7 @@ router.get('/edit/:id', isLoggedIn, function(req,res){
 		where: {id: req.params.id},
 		include: [db.user]
 	}).then(function(recipe){
-		res.render('recipes/favorites/edit', {recipe: recipe});
+		res.render('recipes/wishlist/edit', {recipe: recipe});
 	}).catch(function(err){
 		console.log(err);
 	});
@@ -101,7 +101,7 @@ router.get('/add/:id', isLoggedIn, function(req,res){
 		where: {id: req.params.id},
 		include: [db.user]
 	}).then(function(recipe){
-		res.render('recipes/favorites/add', {recipe: recipe});
+		res.render('recipes/wishlist/add', {recipe: recipe});
 	}).catch(function(err){
 		console.log(err);
 	});

@@ -6,3 +6,6 @@ body{
 main{
 	flex: 1 0 auto;
 }
+.brand-logo{
+	margin-left: 10px;
+}

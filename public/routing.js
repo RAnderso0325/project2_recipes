@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	$('.button-collapse').sideNav();
+	$('.parallax').parallax();
 	$('.delete-recipe-favorites').click(function(e){
 		e.preventDefault();
 		$.ajax({

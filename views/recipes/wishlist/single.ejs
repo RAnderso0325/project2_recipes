@@ -1,3 +1,4 @@
+<div class="container">
 <% if(!recipe.directions){%>
 <div class="row">
 	<h2><%=recipe.title%></h2>
@@ -105,4 +106,5 @@
 		<li><a href="/recipes/wishlist/add/<%=recipe.id%>" class="btn-floating pink accent-2"><i class="material-icons">add</i></a></li>
 		<li><a href="/recipes/wishlist/<%=recipe.id%>" class="btn-floating red accent-2 delete-recipe-favorites"><i class="material-icons">delete</i></a></li>
 	</ul>
+</div>
 </div>

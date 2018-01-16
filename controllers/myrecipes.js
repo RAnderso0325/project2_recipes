@@ -131,6 +131,7 @@ router.put('/edit/:id', isLoggedIn, function(req,res){
 		recipe.ingredients = req.body.ingredients;
 		recipe.img_url = req.body.img_url;
 		recipe.directions = req.body.directions;
+		recipe.notes = req.body.notes;
 		recipe.save();
 	}).then(function(updatedRecipe){
 		res.send('Recipe is updated');

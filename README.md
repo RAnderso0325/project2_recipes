@@ -28,11 +28,20 @@
 * Stubbed out my trello board (see above)
 * Created user stories and wireframed (how I want the site to look and the routs and tables I'll need for functionality)
 * Explored various APIs and chose to use Food2Fork
+* Followed Trello board (green is sprint one items)
 
 ### Sprint 2
 ![Trello Board](/public/images/screenshot-4.png)
+* Started with GET routes, making sure that each page shows up how it's supposed to
+* Worked on POST routes and adding items to the database
+* Worked on DLETE and PUT routes for the wishlist to get MVP functionality
+* My AUTH boilerplate used bootstrap, but I wanted to use materialize, so my initial styling for this sprint involved switching from boostrap to materialize
+
 ### Sprint 3
 ![Trello Board](/public/images/screenshot-5.png)
+* Added my recipes routes
+* Added the homepage styling and styled every page using the style.css file in the public folder
+* Added cloudinary and the ability to upload a photo of what a user has made
 
 ## Homepage
 ![Homepage Layout](/public/images/screenshot-7.png)

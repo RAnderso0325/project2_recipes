@@ -25,6 +25,10 @@
 ## My Process - Trello Board
 ### Sprint 1
 ![Trello Board](/public/images/screenshot-8.png)
+* Stubbed out my trello board (see above)
+* Created user stories and wireframed (how I want the site to look and the routs and tables I'll need for functionality)
+* Explored various APIs and chose to use Food2Fork
+
 ### Sprint 2
 ![Trello Board](/public/images/screenshot-4.png)
 ### Sprint 3
@@ -47,8 +51,15 @@
 	* Use `nodemon` to start the server
 	* Create the database using `sequelize`
 	* Run migrations to use the models
-	* Create an .env file
-	* Get an API key from Food2Fork in order to use the API
+	* Create an .env file with:
+		* `SESSION_SECRET`
+		* `FACEBOOK_APP_ID`
+		* `FACEBOOK_APP_SECRET`
+		* `BASE_URL` (for development, likely localhost)
+		* `RECIPE_API_KEY` from Food2Fork
+		* `CLOUDINARY_URL` from your cloudinary account
+		* `CLOUDINARY_CLOUD_NAME` your cloudinary account name
+	* Create a .gitignore file and add node_modules, .env, .DS_Store
 
 ## View the site!
 https://gourmet-group.herokuapp.com/

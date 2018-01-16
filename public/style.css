@@ -10,17 +10,20 @@ main{
 	margin-left: 70px;
 	font-family: 'Great Vibes', cursive;
 }
+.title-nav{
+	font-size: 30px !important;
+}
 .brand-logo{
 	margin-left: 10px;
 }
 #columns {
-	-webkit-column-count: 3;
+	-webkit-column-count: 5;
 	-webkit-column-gap: 15px;
 	-webkit-column-fill: auto;
-	-moz-column-count: 3;
+	-moz-column-count: 5;
 	-moz-column-gap: 15px;
 	-moz-column-fill: auto;
-	column-count: 3;
+	column-count: 5;
 	column-gap: 15px;
 	column-fill: auto;
 }
@@ -42,39 +45,17 @@ main{
 }
 
 .card-image-pin {
-	width: 100%;
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 15px;
 	margin-bottom: 5px;
 }
-
+.card-content{
+	padding: 10px !important;
+}
 .pin-p {
 	font: 12px/18px Arial, sans-serif;
 	color: #333;
 	margin: 0;
-}
-@media (min-width: 400px) {
-	#columns {
-		-webkit-column-count: 2;
-		-moz-column-count: 2;
-		column-count: 2;
-	}
-}
-
-@media (min-width: 960px) {
-	#columns {
-		-webkit-column-count: 4;
-		-moz-column-count: 4;
-		column-count: 4;
-	}
-}
-
-@media (min-width: 1100px) {
-	#columns {
-		-webkit-column-count: 5;
-		-moz-column-count: 5;
-		column-count: 5;
-	}
 }
 p {
   line-height: 2rem;
@@ -100,11 +81,40 @@ p {
   #index-banner .section {
     top: 10%;
   }
+  #columns{
+  	-webkit-column-count: 4;
+	-moz-column-count: 4;
+	column-count: 4;
+  }
+  .card-content{
+  	padding: 5px !important;
+  	margin: 5px;
+  }
+  .pin{
+  	padding: 15px;
+  	width: 90%;
+  	margin: 10px !important;
+  }
 }
 
 @media only screen and (max-width : 600px) {
   #index-banner .section {
     top: 0;
+  }
+  #columns{
+  	-webkit-column-count: 2;
+	-moz-column-count: 2;
+	column-count: 2;
+	margin: 10px;
+  }
+  .card-content{
+  	padding: 2px !important;
+  	margin: 2px;
+  }
+  .pin{
+  	padding: 10px;
+  	width: 90%;
+  	margin: 10px !important;
   }
 }
 

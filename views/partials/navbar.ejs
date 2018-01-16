@@ -3,10 +3,9 @@
       <a href="/" class="brand-logo"><img class="btn-floating btn-large" src="/images/logo.png"></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="left hide-on-med-and-down home-nav-selection">
-        <li><a href="/">Gourmet Group</a></li>
+        <li><a href="/" class="title-nav">Gourmet Group</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/blog">Blog</a></li>
         <% if(!currentUser){ %>
         <li><a href="/auth/login">Login</a></li>
         <li><a href="/auth/signup">Sign Up</a></li>
@@ -20,13 +19,12 @@
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li><a href="/">Gourmet Group</a></li>
-        <li><a href="/blog">Blog</a></li>
          <% if(!currentUser){ %>
         <li><a href="/auth/login">Login</a></li>
-        <li><a href="/auth/signup">Sing Up</a></li>
+        <li><a href="/auth/signup">Sign Up</a></li>
         <% }else{ %>
         <li><a href="/recipes">Search</a></li>
-        <li><a href="/recipes/wishlist">wishlist</a></li>
+        <li><a href="/recipes/wishlist">Wishlist</a></li>
         <li><a href="/recipes/myrecipes">My Recipes</a></li>
         <li><a href="/profile">My Profile</a></li>
         <li><a href="/auth/logout">Logout</a></li>

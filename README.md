@@ -18,6 +18,10 @@
 * Materialize CSS framework
 * Cloudinary
 
+## User Stories
+* I do a lot of cooking and want to have a place to organize my recipes. I am constantly slightly changing ingredients and cooking times and would like to have an easy to see notes area so that I can keep track of changes and observations. I'd like my recipes to be easy to edit and easy to find. I'd also like to upload photos of my creations. 
+* I'm constantly trying to figure out what to cook with ingredients that I have at home. I'd like to be able to search for recipes by ingredients and add them to a wishlist/to be cooked later. I like looking for things to try and having an accessible list, like pinterest, of things i"m interested in. I'd like to move recipes I've tried to a list of recipes I've made and have the ability to comment on that recipe about how I've made it. 
+
 ## My Process - Trello Board
 ### Sprint 1
 ![Trello Board](/public/images/screenshot-8.png)
@@ -32,9 +36,10 @@
 ## Sample Search Results
 ![Search Results Page](/public/images/screenshot-6.png)
 
-## User Stories
-* I do a lot of cooking and want to have a place to organize my recipes. I am constantly slightly changing ingredients and cooking times and would like to have an easy to see notes area so that I can keep track of changes and observations. I'd like my recipes to be easy to edit and easy to find. I'd also like to upload photos of my creations. 
-* I'm constantly trying to figure out what to cook with ingredients that I have at home. I'd like to be able to search for recipes by ingredients and add them to a wishlist/to be cooked later. I like looking for things to try and having an accessible list, like pinterest, of things i"m interested in. I'd like to move recipes I've tried to a list of recipes I've made and have the ability to comment on that recipe about how I've made it. 
+## Next Steps
+* Add an about page for the site/add about information to the home page
+* Add a public profile page for users
+* Add the ability to search for users and view their public profile with recipes
 
 ## Getting Started
 * Fork and clone this repository

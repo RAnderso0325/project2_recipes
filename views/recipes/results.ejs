@@ -1,16 +1,14 @@
 <div class="container">
+<div class="row"></div>
 <div class="row">
-<form method="POST" action="/recipes">
-	<div class="col l6 m6 s12 form-group">
-		<input id="search" type="text" placeholder="search for recipes by ingredient">
-		<label>Search</label>
-		<button type="submit"><i class="material-icons">search</i></button>
+	<div class="col l6 m6 s12">
+		<h3>Search Results</h3>
 	</div>
-</form>
+	<div class="col l6 m6 s12">
+		<div class="row"></div>
+		<a href="/recipes" class="btn waves-effect waves-light">Search Again</a>
+	</div>
 </div>
-
-<div class="row">
-<h3>Search Results</h3>
 <div class="row">
 <div id="columns">
 <% recipe.recipes.forEach(function(recipe){%>
@@ -38,4 +36,8 @@
         </div>
       </div>
 <%});%>
+</div>
+
+</div>
+<div class="row"></div>
 </div>

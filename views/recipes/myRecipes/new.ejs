@@ -1,28 +1,52 @@
 <div class="container">
-<h3>new recipe form</h3>
-<form class="edit-form" action="/recipes/myrecipes/new" method="POST">
-	<label>Recipe Title</label>
-	<input id="new-title" type="text" name="title" value="<%= recipe.title%>">
-	
-	<input hidden type="text" name="id" id="recipe-id" value="<%=recipe.id%>">
-
-	<input hidden type="text" name="rId" id="recipe-source-id" value="<%=recipe.rId%>">
-
-	<input hidden type="text" name="source_url" id="source-url" value="<%=recipe.source_url%>">
-
-	<input hidden type="text" name="publisher" id="publisher-name" value="<%=recipe.publisher%>">
-
-	<label>Ingredients</label>
-	<input id="new-ingredients" type="text" name="ingredients" value="<%=recipe.ingredients%>">
-
-	<label>Image URL</label>
-	<input type="text" name="img_url" id="img-url" value="<%=recipe.img_url%>">
-
-	<label>Directions</label>
-	<input type="text" name="directions" id="new-directions" value="<%=recipe.directions%>" placeholder="comma separated instructions">
-
-	<button class="btn waves-effect waves-light" type="submit">Add Recipe
-		<i class="material-icons right">send</i>
-	</button>
-</form>
+	<div class="row">
+		<h3>New Recipe Upload</h3>
+	</div>
+	<div class="row">
+		<form class="new-form col s12" action="/recipes/myrecipes/new" method="POST">
+			<div class="row">
+				<div class="input-field col s12">
+					<label>Recipe Title</label>
+					<input type="text" name="title" value="">
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<label>Source URL</label>
+					<input type="text" name="source_url" value="">
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<label>Publisher</label>
+					<input type="text" name="publisher" value="">
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<label>Ingredients</label>
+					<input type="text" name="ingredients" value="" placeholder="please separate ingredients with a comma (no spaces!) for example: two teaspoons nutmeg,two chicken breats, thawed,salt to taste">
+				</div>
+			</div>
+			<input hidden type="text" name="userId" value="currentUser.id">
+			<div class="row">
+				<div class="input-field col s12">
+					<label>Image URL</label>
+					<input type="text" name="img_url" value="">
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<label>Directions</label>
+					<input type="text" name="directions" value="" placeholder="Semi-colon (;) separated instructions">
+				</div>
+			</div>
+			<div class="row">
+				<button class="btn waves-effect waves-light" type="submit">Add Recipe
+					<i class="material-icons right">add</i>
+				</button>
+			</div>
+		</form>
+	</div>
+	<div class="row"></div>
 </div>

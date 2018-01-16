@@ -15,6 +15,7 @@ var upload = multer({dest: "./uploads"});
 
 router.get('/', isLoggedIn, function(req,res){
 	db.current.findAll({
+		where: {userId: req.user.id},
 		include: [db.user]
 	}).then(function(recipes){
 		res.render('recipes/myRecipes/all', {results: recipes});
@@ -22,12 +23,30 @@ router.get('/', isLoggedIn, function(req,res){
 });
 
 router.get('/new', isLoggedIn, function(req,res){
-	res.render('/recipes/myRecipes/new');
+	res.render('recipes/myRecipes/new');
+});
+
+router.post('/new', isLoggedIn, function(req,res){
+	console.log(req.body);
+	db.current.create({
+		title: req.body.title,
+		ingredients: req.body.ingredients,
+		directions: req.body.directions,
+		img_url: req.body.img_url,
+		publisher: req.body.publisher,
+		source_url: req.body.source_url,
+		userId: req.user.id
+	}).then(function(createdRecipe){
+		res.redirect('/recipes/myrecipes/'+createdRecipe.id);
+	}).catch(function(err){
+		console.log(err);
+	});
 });
 
 router.post('/', isLoggedIn, function(req,res){//new recipe
 	db.current.findOrCreate({
-		where: {id: req.body.id},
+		where: {id: req.body.id,
+				userId: req.user.id},
 		include: [db.user],
 		defaults: {
 			rId: req.body.rId,
@@ -36,7 +55,8 @@ router.post('/', isLoggedIn, function(req,res){//new recipe
 			directions: req.body.directions,
 			img_url: req.body.img_url,
 			publisher: req.body.publisher,
-			source_url: req.body.source_url
+			source_url: req.body.source_url,
+			userId: req.user.id
 		}
 	}).spread(function(current, wasCreated){
 		if(wasCreated){
@@ -49,7 +69,8 @@ router.post('/', isLoggedIn, function(req,res){//new recipe
 
 router.get('/:id', isLoggedIn, function(req,res){
 	db.current.findOne({
-		where: {id: req.params.id},
+		where: {id: req.params.id,
+				userId: req.user.id},
 		include: [db.user]
 	}).then(function(recipe){
 		res.render('recipes/myRecipes/single', {recipe: recipe});
@@ -60,7 +81,8 @@ router.get('/:id', isLoggedIn, function(req,res){
 
 router.get('/edit/:id', isLoggedIn, function(req,res){
 	db.current.findOne({
-		where: {id: req.params.id},
+		where: {id: req.params.id,
+				userId: req.user.id},
 		include: [db.user]
 	}).then(function(recipe){
 		res.render('recipes/myRecipes/edit', {recipe: recipe});
@@ -71,7 +93,8 @@ router.get('/edit/:id', isLoggedIn, function(req,res){
 
 router.get('/add-photo/:id', isLoggedIn, function(req,res){
 	db.current.findOne({
-		where: {id: req.params.id},
+		where: {id: req.params.id,
+				userId: req.user.id},
 		include: [db.user]
 	}).then(function(recipe){
 		res.render('recipes/myRecipes/addPhoto', {recipe: recipe});
@@ -86,7 +109,8 @@ router.post('/add-photo/:id', isLoggedIn, upload.single('myFile'), function(req,
 		userImg = result.public_id;
 		console.log(userImg);
 		db.current.findOne({
-			where: {id: req.params.id},
+			where: {id: req.params.id,
+					userId: req.user.id},
 			include: [db.user]
 		}).then(function(recipe){
 			recipe.user_img = userImg;

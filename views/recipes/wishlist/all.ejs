@@ -1,18 +1,44 @@
 <div class="container">
-<h2>Wishlist:</h2>
-<div class="row">
-<% results.forEach(function(recipe){%>
-	<div class="col l3 m4 s12">
-		<div class="row">
-			<h5><%=recipe.title%></h5>
-			<a href="/recipes/wishlist/<%=recipe.id%>" class="btn-floating btn-large waves-effect waves-light green accent-2"><i class="material-icons">info_outline</i></a>
-			<a href="/recipes/wishlist/add/<%=recipe.id%>" class="btn-floating btn-large pink accent-2"><i class="material-icons">add</i></a>
-			<a href="/recipes/wishlist/<%=recipe.id%>" class="btn-floating btn-large waves-effect waves-light red accent-2"><i class="material-icons">delete</i></a>
-		</div>
-		<div class="row">
-			<img class="responsive-img" src="<%=recipe.img_url%>"></a>
+	<div class="row">
+		<h2>Wishlist:</h2>
+	</div>
+<%if(results){%>
+	<div class="row">
+		<div id="columns">
+		<% results.forEach(function(recipe){%>
+			<div class="card pin">
+				<div class="card-image">
+					<img class="card-image-pin" src="<%=recipe.img_url%>">
+					<a href="/recipes/wishlist/<%=recipe.id%>" class="btn-floating waves-effect waves-light green accent-2"><i class="material-icons">info_outline</i></a>
+					<a href="/recipes/wishlist/add/<%=recipe.id%>" class="btn-floating pink accent-2"><i class="material-icons">add</i></a>
+					<a href="/recipes/wishlist/<%=recipe.id%>" class="btn-floating waves-effect waves-light red accent-2 delete-recipe-favorites"><i class="material-icons">delete</i></a>
+				</div>
+				<div class="card-content pin-p">
+					<p>
+						<% var re = /\&\#8217\;/; %>
+          				<% var reT = /\&amp\;/; %>
+						<% if(recipe.title.search(re)){%>
+							<% var title = recipe.title.replace(re, '\''); %>
+							<%if(recipe.title.search(reT)){%>
+								<% title = recipe.title.replace(reT, '\&');%>
+							<%}%>
+							<h6><%=title%></h6>
+						<%}else{%>
+							<h6><%=recipe.title%></h6>
+						<%}%>
+					</p>
+				</div>
+			</div>
+			<%})%>
 		</div>
 	</div>
-<%})%>
+
+<%}else{%>
+	<h4>No recipes yet! Click on the search tab to find some recipes you might be interested in. Maybe try...
+		<% var searches = ['pears', 'pasta', 'shredded chicken'];%>
+		<% var termEx = Math.floor(Math.random() * Math.floor(3));%>
+		<%=searches(termEx)%>!</h4>
+<%}%>
+<div class="row"></div>
 </div>
-</div>
+	

@@ -6,7 +6,7 @@
 		<div class="row">
 			<h5><%=recipe.title%></h5>
 			<a href="/recipes/myrecipes/<%=recipe.id%>" class="btn-floating btn-large waves-effect waves-light green accent-2"><i class="material-icons">info_outline</i></a>
-			<a href="/recipes/myrecipes/<%=recipe.id%>" class="btn-floating btn-large waves-effect waves-light red accent-2"><i class="material-icons">delete</i></a>
+			<a href="/recipes/myrecipes/<%=recipe.id%>" class="btn-floating btn-large waves-effect waves-light red accent-2 delete-my-recipe"><i class="material-icons">delete</i></a>
 		</div>
 		<div class="row">
 			<% if(!recipe.user_img){%>

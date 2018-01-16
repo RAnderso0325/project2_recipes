@@ -15,6 +15,7 @@ var upload = multer({dest: "./uploads"});
 
 router.get('/', isLoggedIn, function(req,res){
 	db.future.findAll({
+		where: {userId: req.user.id},
 		include: [db.user]
 	}).then(function(recipes){
 		res.render('recipes/wishlist/all', {results: recipes});
@@ -32,7 +33,8 @@ router.post('/', isLoggedIn, function(req,res){
 			source_url: req.body.source_url,
 			img_url: req.body.img_url,
 			publisher: req.body.publisher,
-			directions: req.body.directions
+			directions: req.body.directions,
+			userId: req.user.id
 		}
 	}).spread(function(future, wasCreated){
 		if(wasCreated){
@@ -47,7 +49,8 @@ router.post('/', isLoggedIn, function(req,res){
 
 router.get('/:id', isLoggedIn, function(req,res){
 	db.future.findOne({
-		where: {id: req.params.id},
+		where: {id: req.params.id,
+				userId: req.user.id},
 		include: [db.user]
 	}).then(function(recipe){
 		res.render('recipes/wishlist/single', {recipe: recipe});
@@ -72,7 +75,8 @@ router.delete('/:id', isLoggedIn, function(req,res){
 
 router.get('/edit/:id', isLoggedIn, function(req,res){
 	db.future.findOne({
-		where: {id: req.params.id},
+		where: {id: req.params.id,
+				userId: req.user.id},
 		include: [db.user]
 	}).then(function(recipe){
 		res.render('recipes/wishlist/edit', {recipe: recipe});
@@ -98,7 +102,8 @@ router.put('/edit/:id', isLoggedIn, function(req,res){
 
 router.get('/add/:id', isLoggedIn, function(req,res){
 	db.future.findOne({
-		where: {id: req.params.id},
+		where: {id: req.params.id,
+				userId: req.user.id},
 		include: [db.user]
 	}).then(function(recipe){
 		res.render('recipes/wishlist/add', {recipe: recipe});

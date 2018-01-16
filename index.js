@@ -33,7 +33,6 @@ app.use(function(req, res, next){
   res.locals.alerts = req.flash();
   next();
 });
-app.use('/blog', require('./controllers/blog'));
 
 app.get('/', function(req, res){
   res.render('home');

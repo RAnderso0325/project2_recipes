@@ -2,7 +2,12 @@
 	<div class="row">
 		<h2>Wishlist:</h2>
 	</div>
-<%if(results){%>
+<%if(!results){%>
+	<h4>No recipes yet! Click on the search tab to find some recipes you might be interested in. Maybe try...
+		<% var searches = ['pears', 'pasta', 'shredded chicken'];%>
+		<% var termEx = Math.floor(Math.random() * Math.floor(3));%>
+		<%=searches(termEx)%>!</h4>
+<%}else{%>
 	<div class="row">
 		<div id="columns">
 		<% results.forEach(function(recipe){%>
@@ -32,12 +37,6 @@
 			<%})%>
 		</div>
 	</div>
-
-<%}else{%>
-	<h4>No recipes yet! Click on the search tab to find some recipes you might be interested in. Maybe try...
-		<% var searches = ['pears', 'pasta', 'shredded chicken'];%>
-		<% var termEx = Math.floor(Math.random() * Math.floor(3));%>
-		<%=searches(termEx)%>!</h4>
 <%}%>
 <div class="row"></div>
 </div>

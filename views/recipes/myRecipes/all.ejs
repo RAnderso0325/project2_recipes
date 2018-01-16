@@ -1,21 +1,37 @@
 <div class="container">
 <h2>My Recipes:</h2>
 <div class="row">
-<% results.forEach(function(recipe){%>
-	<div class="col l3 m4 s12">
-		<div class="row">
-			<h5><%=recipe.title%></h5>
-			<a href="/recipes/myrecipes/<%=recipe.id%>" class="btn-floating btn-large waves-effect waves-light green accent-2"><i class="material-icons">info_outline</i></a>
-			<a href="/recipes/myrecipes/<%=recipe.id%>" class="btn-floating btn-large waves-effect waves-light red accent-2 delete-my-recipe"><i class="material-icons">delete</i></a>
+	<div id="columns">
+	<% results.forEach(function(recipe){%>
+		<div class="card pin">
+			<div class="card-image">
+				<% if(!recipe.user_img){%>
+					<img class="responsive-img" src="<%=recipe.img_url%>">
+				<%}else{%>
+					<img class="responsive-img" src="https://res.cloudinary.com/<%=process.env.CLOUDINARY_CLOUD_NAME%>/image/upload/<%=recipe.user_img%>.jpg">
+				<%}%>
+				<a href="/recipes/myrecipes/<%=recipe.id%>" class="btn-floating waves-effect waves-light green accent-2"><i class="material-icons">info_outline</i></a>
+				<a href="/recipes/myrecipes/edit/<%=recipe.id%>" class="btn-floating pink accent-2"><i class="material-icons">edit</i></a>
+				<a href="/recipes/myrecipes/<%=recipe.id%>" class="btn-floating waves-effect waves-light red accent-2 delete-my-recipe"><i class="material-icons">delete</i></a>
+			</div>
+			<div class="card-content pin-p">
+				<p>
+					<% var re = /\&\#8217\;/; %>
+          				<% var reT = /\&amp\;/; %>
+						<% if(recipe.title.search(re)){%>
+							<% var title = recipe.title.replace(re, '\''); %>
+							<%if(recipe.title.search(reT)){%>
+								<% title = recipe.title.replace(reT, '\&');%>
+							<%}%>
+							<h6><%=title%></h6>
+						<%}else{%>
+							<h6><%=recipe.title%></h6>
+						<%}%>
+				</p>
+			</div>
 		</div>
-		<div class="row">
-			<% if(!recipe.user_img){%>
-			<img class="responsive-img" src="<%=recipe.img_url%>">
-			<%}else{%>
-			<img class="responsive-img" src="https://res.cloudinary.com/<%=process.env.CLOUDINARY_CLOUD_NAME%>/image/upload/<%=recipe.user_img%>.jpg">
-			<%}%>
-		</div>
+	<%})%>
 	</div>
-<%})%>
 </div>
+<div class="row"></div>
 </div>

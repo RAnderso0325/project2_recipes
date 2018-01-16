@@ -38,10 +38,6 @@ app.get('/', function(req, res){
   res.render('home');
 });
 
-app.get('/profile', isLoggedIn, function(req, res){
-  res.render('profile');
-});
-
 app.use('/auth', require('./controllers/auth'));
 app.use('/recipes', require('./controllers/recipes'));
 app.use('/recipes/wishlist', require('./controllers/wishlist'));

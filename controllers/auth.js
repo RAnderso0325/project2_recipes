@@ -33,7 +33,7 @@ router.post('/signup', function(req, res, next){
     if(wasCreated){
       //Good job, you didn't try to make a duplicate!
       passport.authenticate('local', {
-        successRedirect: '/profile',
+        successRedirect: '/recipes/myrecipes',
         successFlash: 'Successfully logged in'
       })(req, res, next);
     }
@@ -62,7 +62,7 @@ router.get('/facebook', passport.authenticate('facebook', {
 
 //Handle the response from Facebook (logic located in passport config)
 router.get('/callback/facebook', passport.authenticate('facebook', {
-  successRedirect: '/profile',
+  successRedirect: '/recipes/myrecipes',
   successFlash: 'You successfully logged in via Facebook',
   failureRedirect: '/auth/login',
   failureFlash: 'You tried to login with FB, but FB doesn\'t like you'

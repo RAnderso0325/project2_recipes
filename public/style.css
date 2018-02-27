@@ -73,6 +73,11 @@ p {
     width: 100%;
 }
 
+.link-text-footer{
+	padding-left: 8px;
+	padding-right: 4px;
+}
+
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;
